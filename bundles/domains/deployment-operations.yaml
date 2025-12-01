@@ -1,0 +1,21 @@
+id: bundle:deployment-operations
+type: domain
+version: "1.0.0"
+title: "Deployment & Operations Domain Bundle"
+description: "Infrastructure, deployment processes, and operational practices for med-adhere1"
+
+domain: deployment-operations
+concerns:
+  - infrastructure
+  - observability
+  - incident-response
+
+scds:
+  - scd:project:infrastructure-definition
+  - scd:project:observability
+  - scd:project:incident-response
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Deployment & Operations domain bundle for med-adhere1"

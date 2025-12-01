@@ -1,0 +1,85 @@
+id: scd:project:problem-definition
+type: project
+version: "1.0.0"
+status: DRAFT
+title: "Problem Definition"
+description: "Core problem, affected populations, and root causes"
+
+domain: business-context
+concerns:
+  - problem-analysis
+  - user-impact
+
+content:
+  problem_statement: |
+    Medication non-adherence remains a major clinical and economic challenge across
+    the U.S. healthcare system. Approximately 50% of patients do not take medications
+    as prescribed, leading to avoidable hospitalizations, complications, and costs.
+    Health systems lack a unified, clinically integrated tool to help patients stay
+    on track and give clinicians real-time insight into adherence patterns.
+
+  problem_context:
+    impact: "Medication non-adherence affects approximately 50% of patients taking chronic medications, leading to poor clinical outcomes, increased readmissions, and avoidable healthcare costs. For high-risk conditions (diabetes, hypertension, post-operative recovery), small deviations from medication timing can meaningfully impact outcomes."
+    affected_populations:
+      - name: "Elderly adults with polypharmacy"
+        size: "Primary target population"
+        pain_points:
+          - "Complex medication regimens with multiple drugs and timing requirements"
+          - "Lack of visibility into daily medication schedules"
+          - "No reminder system integrated with clinical care"
+      - name: "Post-operative patients during recovery"
+        size: "High-risk cohort"
+        pain_points:
+          - "Critical medication timing for recovery outcomes"
+          - "Limited post-discharge support for adherence"
+      - name: "Chronic condition patients (diabetes, hypertension)"
+        size: "Large ongoing population"
+        pain_points:
+          - "Long-term adherence challenges"
+          - "Lack of clinician visibility between visits"
+      - name: "Clinicians and care coordinators"
+        size: "Secondary users"
+        pain_points:
+          - "No real-time adherence data"
+          - "Unable to identify at-risk patients proactively"
+          - "Manual outreach workflows"
+    consequences_of_inaction:
+      - "Continued poor patient outcomes and increased complications"
+      - "Avoidable readmissions affecting value-based care reimbursement"
+      - "Failure to meet CMS and payer adherence reporting requirements"
+      - "Lost revenue opportunities and regulatory non-compliance"
+      - "Increased clinician burnout from reactive workflows"
+
+  root_causes:
+    - cause: "Fragmented, non-clinical reminder apps that don't integrate into care workflows"
+      evidence: "Existing reminder apps are standalone consumer products without EHR integration or clinical oversight"
+    - cause: "Clinicians lack visibility into patient behavior between visits"
+      evidence: "Care teams have no real-time data on medication adherence patterns"
+    - cause: "No unified platform integrating patient reminders with clinician dashboards"
+      evidence: "Current tools are either patient-facing or clinician-facing, not both"
+    - cause: "Medication data silos between EHR systems and patient apps"
+      evidence: "Medication lists are authoritative in EHRs but not accessible to patients in actionable form"
+
+  current_state:
+    existing_solutions: |
+      Current solutions include:
+      - Consumer reminder apps (fragmented, non-clinical, no EHR integration)
+      - Manual phone call outreach by care coordinators
+      - Post-visit paper medication schedules
+      - EHR patient portals (complex, not reminder-focused)
+      None of these provide a unified, clinically integrated solution.
+    gaps: |
+      Existing solutions fail to:
+      - Integrate medication schedules directly from EHRs
+      - Provide real-time adherence visibility to clinicians
+      - Support low-tech-literacy elderly populations effectively
+      - Connect patient adherence data with care team workflows
+      - Meet HIPAA and health system compliance requirements from day one
+
+provenance:
+  created_by: "sarah.chen@example.com"
+  created_at: "2025-12-01T10:30:00Z"
+  last_updated_by: "AI Transposer (Claude)"
+  last_updated_at: "2025-12-01T10:30:00Z"
+  rationale: "Generated from Business Context Brief approved 2025-12-01"
+  source_document: "docs/business-context/business-context-opportunity-requirements-brief.md"

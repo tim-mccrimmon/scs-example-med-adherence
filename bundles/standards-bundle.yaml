@@ -1,0 +1,23 @@
+id: bundle:standards
+type: standards
+version: "1.0.0"
+title: "Compliance Standards Bundle"
+description: "Regulatory and industry standards for med-adhere1"
+
+imports: []
+
+scds:
+  # Standards-tier SCDs would be imported from standards organizations
+  # or created as team interpretations of regulatory requirements
+  
+  - scd:standards:hipaa-compliance
+  - scd:standards:chai-adherence
+  - scd:standards:soc2-controls
+  - scd:standards:tefca-participation
+  
+  
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Standards bundle for healthcare project type"

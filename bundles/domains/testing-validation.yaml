@@ -1,0 +1,21 @@
+id: bundle:testing-validation
+type: domain
+version: "1.0.0"
+title: "Testing & Validation Domain Bundle"
+description: "Testing strategy, coverage requirements, and validation approach for med-adhere1"
+
+domain: testing-validation
+concerns:
+  - test-coverage
+  - validation
+  - quality-assurance
+
+scds:
+  - scd:project:test-coverage
+  - scd:project:validation-plan
+  - scd:project:qa-procedures
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Testing & Validation domain bundle for med-adhere1"

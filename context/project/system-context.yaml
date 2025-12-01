@@ -1,0 +1,48 @@
+id: scd:project:system-context
+type: project
+version: 1.0.0
+status: DRAFT
+title: System Context
+description: System boundaries, external actors, and key interactions
+domain: architecture
+concerns:
+- system-boundaries
+- external-integrations
+content:
+  system_name: med-adhere1
+  system_purpose: '[Describe the primary purpose and goals of the system]
+
+    '
+  system_boundaries:
+    in_scope:
+    - '[Component/feature in scope]'
+    out_of_scope:
+    - '[Component/feature explicitly out of scope]'
+  external_actors:
+  - name: '[Actor name]'
+    type: '[user|system|service]'
+    description: '[Description of the actor]'
+    interactions:
+    - '[What they do with the system]'
+  external_systems:
+  - name: '[System name]'
+    type: '[database|api|service|etc]'
+    description: '[Description of external system]'
+    integration_type: '[REST|GraphQL|RPC|etc]'
+    data_flow: '[inbound|outbound|bidirectional]'
+  key_data_flows:
+  - name: '[Flow name]'
+    source: '[Source system/actor]'
+    destination: '[Destination system/actor]'
+    data_type: '[Type of data]'
+    frequency: '[real-time|batch|on-demand]'
+  _generation_note: This SCD was auto-generated from the architecture domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: david.kim@example.com
+  created_at: '2025-12-01T18:18:55.683826Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.683826Z'
+  rationale: Generated from architecture brief approved 2025-12-01
+  source_document: docs/architecture/*-brief.md

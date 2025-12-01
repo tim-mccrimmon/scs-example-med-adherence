@@ -1,0 +1,4 @@
+# SCS Project Configuration
+project_name: med-adhere1
+project_type: healthcare
+scs_version: 0.1.0

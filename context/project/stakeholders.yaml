@@ -1,0 +1,181 @@
+id: scd:project:stakeholders
+type: project
+version: "1.0.0"
+status: DRAFT
+title: "Stakeholders"
+description: "Stakeholder groups, roles, needs, and goals"
+
+domain: business-context
+concerns:
+  - stakeholder-analysis
+  - user-needs
+
+content:
+  primary_users:
+    - name: "Patients - Elderly adults with polypharmacy"
+      description: "Elderly adults taking multiple chronic medications"
+      needs:
+        - "Clear, simple medication reminders"
+        - "Large text and high contrast interfaces"
+        - "One-tap dose confirmation"
+        - "Supportive, non-punitive messaging"
+      goals:
+        - "Stay on track with medication schedules"
+        - "Avoid missing critical doses"
+        - "Understand daily medication requirements easily"
+      constraints:
+        - "Low tech literacy"
+        - "May have vision or dexterity challenges"
+        - "Prefer simple, predictable interactions"
+
+    - name: "Patients - Post-operative recovery"
+      description: "Patients recovering from surgery with time-critical medication schedules"
+      needs:
+        - "Accurate timing for pain management and recovery meds"
+        - "Clear visibility into medication schedule"
+        - "Easy way to track compliance"
+      goals:
+        - "Follow post-op medication plan precisely"
+        - "Avoid complications from missed doses"
+      constraints:
+        - "Limited mobility during recovery"
+        - "May be managing pain or cognitive effects"
+
+    - name: "Patients - Chronic condition management"
+      description: "Patients with diabetes, hypertension, or other ongoing conditions"
+      needs:
+        - "Consistent daily reminders"
+        - "Long-term adherence support"
+        - "Ability to review medication history"
+      goals:
+        - "Maintain medication routine long-term"
+        - "Prevent disease progression"
+      constraints:
+        - "Adherence fatigue over time"
+        - "Complex multi-drug regimens"
+
+  secondary_users:
+    - name: "Clinicians (physicians, nurse practitioners)"
+      description: "Healthcare providers managing patient medication plans"
+      needs:
+        - "Real-time adherence visibility"
+        - "Actionable risk signals for at-risk patients"
+        - "Integration with existing EHR workflows"
+      goals:
+        - "Improve patient outcomes through better adherence"
+        - "Identify non-adherent patients proactively"
+        - "Reduce time spent on manual adherence checks"
+      constraints:
+        - "Limited time per patient interaction"
+        - "Cannot review all patients daily"
+        - "Need concise, actionable insights only"
+
+    - name: "Care coordinators and population health teams"
+      description: "Care team members managing patient cohorts"
+      needs:
+        - "Ability to identify high-risk patients quickly"
+        - "Outreach workflow support"
+        - "Cohort-level adherence metrics"
+      goals:
+        - "Proactively reach out to at-risk patients"
+        - "Reduce readmissions and complications"
+        - "Support value-based care programs"
+      constraints:
+        - "Managing large patient panels"
+        - "Limited outreach capacity"
+
+    - name: "Pharmacists (future persona)"
+      description: "Pharmacy team providing medication counseling"
+      needs:
+        - "Visibility into adherence patterns"
+        - "Ability to provide targeted counseling"
+      goals:
+        - "Support patients with medication education"
+        - "Identify medication-related issues early"
+      constraints:
+        - "Currently out of scope for Phase 1"
+
+  internal_stakeholders:
+    - role: "Clinical leadership"
+      interest: "Improving patient outcomes and meeting value-based care metrics"
+      requirements:
+        - "Evidence-based adherence improvement"
+        - "Measurable impact on readmissions"
+        - "Clinician workflow integration"
+
+    - role: "Compliance and privacy officers"
+      interest: "Ensuring HIPAA compliance and patient data protection"
+      requirements:
+        - "HIPAA compliance from day one"
+        - "SOC2 controls implementation"
+        - "Complete audit trails"
+        - "Data retention policies"
+
+    - role: "IT and integration teams"
+      interest: "Successful EHR integration and system reliability"
+      requirements:
+        - "FHIR R4 MedicationRequest integration"
+        - "Secure, scalable infrastructure"
+        - "Vendor security review compliance"
+
+    - role: "Data science and AI teams"
+      interest: "Leveraging AI for adherence prediction and personalization"
+      requirements:
+        - "Access to adherence pattern data"
+        - "AI transparency for clinicians"
+        - "Bias mitigation controls"
+
+    - role: "Care management leadership"
+      interest: "Optimizing care coordinator workflows and patient engagement"
+      requirements:
+        - "Clear escalation workflows"
+        - "Efficient patient prioritization"
+        - "Reduced manual outreach burden"
+
+    - role: "Operations and program implementation teams"
+      interest: "Successful deployment and adoption"
+      requirements:
+        - "Deployment support for health systems"
+        - "Training materials for staff"
+        - "Co-branding flexibility for customers"
+
+  external_stakeholders:
+    - name: "CMS (Centers for Medicare & Medicaid Services)"
+      relationship: "Regulatory body for Medicare/Medicaid reimbursement"
+      expectations:
+        - "Adherence reporting capabilities"
+        - "Support for value-based care programs"
+
+    - name: "Commercial payers (insurance companies)"
+      relationship: "Contracting partners for reimbursement"
+      expectations:
+        - "Adherence data for outcomes reporting"
+        - "Support for care coordination programs"
+
+    - name: "EHR vendors (Epic, Cerner, etc.)"
+      relationship: "Integration partners for medication data"
+      expectations:
+        - "FHIR-compliant integration"
+        - "Secure data exchange"
+        - "Minimal performance impact on EHR systems"
+
+    - name: "SMS/notification vendors"
+      relationship: "Service providers for patient communication"
+      expectations:
+        - "High-volume reliable message delivery"
+        - "HIPAA-compliant communication channels"
+
+    - name: "Health system IT security teams"
+      relationship: "Customer security reviewers"
+      expectations:
+        - "Vendor security assessment compliance"
+        - "Penetration testing and security audits"
+        - "Data protection guarantees"
+
+provenance:
+  created_by: "sarah.chen@example.com"
+  created_at: "2025-12-01T10:35:00Z"
+  last_updated_by: "AI Transposer (Claude)"
+  last_updated_at: "2025-12-01T10:35:00Z"
+  rationale: "Generated from Business Context Brief approved 2025-12-01"
+  source_document: "docs/business-context/business-context-opportunity-requirements-brief.md"

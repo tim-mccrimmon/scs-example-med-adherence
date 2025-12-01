@@ -1,0 +1,31 @@
+id: bundle:med-adhere1
+type: project
+version: "1.0.0"
+title: "med-adhere1 Complete Context Bundle"
+description: "Complete structured context for med-adhere1"
+
+imports:
+  # Foundation bundles
+  - bundle:meta:1.0.0
+  - bundle:standards:1.0.0
+
+  # Domain bundles
+  - bundle:business-context:1.0.0
+  - bundle:architecture:1.0.0
+  - bundle:security:1.0.0
+  - bundle:performance-reliability:1.0.0
+  - bundle:usability-accessibility:1.0.0
+  - bundle:compliance-governance:1.0.0
+  - bundle:data-provenance:1.0.0
+  - bundle:testing-validation:1.0.0
+  - bundle:deployment-operations:1.0.0
+  - bundle:safety-risk:1.0.0
+  - bundle:ethics-ai-accountability:1.0.0
+  
+
+scds: []  # All SCDs are in imported bundles
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Initial project bundle for med-adhere1 development"

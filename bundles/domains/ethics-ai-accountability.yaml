@@ -1,0 +1,21 @@
+id: bundle:ethics-ai-accountability
+type: domain
+version: "1.0.0"
+title: "Ethics & AI Accountability Domain Bundle"
+description: "Responsible AI use, accountability, and ethical guidelines for med-adhere1"
+
+domain: ethics-ai-accountability
+concerns:
+  - ai-usage
+  - accountability
+  - bias-mitigation
+
+scds:
+  - scd:project:ai-usage-policy
+  - scd:project:audit-trail
+  - scd:project:model-bias
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Ethics & AI Accountability domain bundle for med-adhere1"

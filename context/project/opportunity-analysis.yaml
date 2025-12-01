@@ -1,0 +1,48 @@
+id: scd:project:opportunity-analysis
+type: project
+version: 1.0.0
+status: DRAFT
+title: Opportunity Analysis
+description: Market context, competitive landscape, and timing factors
+domain: business-context
+concerns:
+- market-analysis
+- competitive-positioning
+content:
+  opportunity_summary: '[High-level summary of the opportunity]
+
+    '
+  market_context:
+    market_size: '[Addressable market size]'
+    growth_trends:
+    - '[Market trend]'
+    market_gaps:
+    - '[Unmet need in the market]'
+  competitive_landscape:
+  - competitor: '[Competitor name]'
+    strengths:
+    - '[What they do well]'
+    weaknesses:
+    - '[What they don''t address]'
+    differentiation: '[How we differ]'
+  timing_factors:
+    why_now: '[Why this is the right time for this initiative]
+
+      '
+    urgency:
+    - '[Factor creating urgency]'
+    windows_of_opportunity:
+    - '[Time-sensitive opportunity]'
+  strategic_value:
+  - value: '[Type of value created]'
+    description: '[How this value is realized]'
+  _generation_note: This SCD was auto-generated from the business-context domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: sarah.chen@example.com
+  created_at: '2025-12-01T18:18:55.677007Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.677007Z'
+  rationale: Generated from business-context brief approved 2025-12-01
+  source_document: docs/business-context/*-brief.md

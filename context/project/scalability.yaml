@@ -1,0 +1,59 @@
+id: scd:project:scalability
+type: project
+version: 1.0.0
+status: DRAFT
+title: Scalability
+description: Horizontal and vertical scaling strategy, capacity planning, and resource
+  limits
+domain: performance-reliability
+concerns:
+- scalability
+- capacity-planning
+- resource-management
+content:
+  scaling_strategy:
+    horizontal:
+      enabled: '[yes|no]'
+      trigger: '[CPU|Memory|Request rate|Custom metric]'
+      min_instances: '[Minimum instances]'
+      max_instances: '[Maximum instances]'
+      scale_up_threshold: '[Threshold to scale up]'
+      scale_down_threshold: '[Threshold to scale down]'
+      cooldown_period: '[Cooldown between scaling events]'
+    vertical:
+      enabled: '[yes|no]'
+      approach: '[Manual|Automated]'
+      constraints: '[Resource constraints]'
+  capacity_planning:
+    current_capacity:
+      users: '[Current user capacity]'
+      transactions_per_day: '[Current transaction capacity]'
+    growth_projection:
+      period: '[Projection period]'
+      expected_growth: '[Expected growth rate]'
+      capacity_buffer: '[Headroom percentage]'
+    bottlenecks:
+    - component: '[Component name]'
+      limit: '[What the limit is]'
+      mitigation: '[How to address]'
+  resource_limits:
+  - resource: '[CPU|Memory|Storage|etc]'
+    component: '[Component name]'
+    limit: '[Limit value]'
+    monitoring: '[How limit is monitored]'
+    action_on_limit: '[What happens when limit is reached]'
+  load_distribution:
+    strategy: '[Round-robin|Least connections|Weighted|etc]'
+    sticky_sessions: '[yes|no]'
+    health_checks:
+    - '[Health check 1]'
+  _generation_note: This SCD was auto-generated from the performance-reliability domain
+    brief. In production, content would be extracted by AI transposer. For reference
+    implementation, this demonstrates the transposition workflow.
+provenance:
+  created_by: david.kim@example.com
+  created_at: '2025-12-01T18:18:55.738428Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.738428Z'
+  rationale: Generated from performance-reliability brief approved 2025-12-01
+  source_document: docs/performance-reliability/*-brief.md

@@ -1,0 +1,42 @@
+id: scd:project:constraints-and-assumptions
+type: project
+version: 1.0.0
+status: DRAFT
+title: Constraints and Assumptions
+description: Non-technical constraints, organizational boundaries, and key assumptions
+domain: business-context
+concerns:
+- constraints
+- assumptions
+content:
+  business_constraints:
+  - constraint: '[Business constraint]'
+    type: '[budget|timeline|resource|organizational]'
+    impact: '[How this affects the project]'
+    mitigation: '[How to work within this constraint]'
+  organizational_constraints:
+  - constraint: '[Organizational limitation]'
+    description: '[Details of the constraint]'
+  regulatory_constraints:
+  - regulation: '[Regulatory requirement]'
+    jurisdiction: '[Where it applies]'
+    impact: '[How it constrains the project]'
+  key_assumptions:
+  - assumption: '[Critical assumption]'
+    rationale: '[Why we''re making this assumption]'
+    validation: '[How this will be validated]'
+    risk_if_wrong: '[What happens if this assumption is false]'
+  dependencies:
+  - dependency: '[External factor or resource]'
+    type: '[technical|organizational|partner]'
+    criticality: '[high|medium|low]'
+  _generation_note: This SCD was auto-generated from the business-context domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: sarah.chen@example.com
+  created_at: '2025-12-01T18:18:55.679276Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.679276Z'
+  rationale: Generated from business-context brief approved 2025-12-01
+  source_document: docs/business-context/*-brief.md

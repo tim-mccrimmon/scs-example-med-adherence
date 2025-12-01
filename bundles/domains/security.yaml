@@ -1,0 +1,23 @@
+id: bundle:security
+type: domain
+version: "1.0.0"
+title: "Security Domain Bundle"
+description: "Security controls, data protection, and threat management for med-adhere1"
+
+domain: security
+concerns:
+  - authentication
+  - authorization
+  - data-protection
+  - threat-management
+
+scds:
+  - scd:project:authn-authz
+  - scd:project:data-protection
+  - scd:project:data-handling
+  - scd:project:threat-model
+
+provenance:
+  created_by: "timmccrimmon@example.com"
+  created_at: "2025-12-01T16:12:23.785813+00:00"
+  rationale: "Security domain bundle for med-adhere1"

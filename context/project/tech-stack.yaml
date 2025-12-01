@@ -1,0 +1,60 @@
+id: scd:project:tech-stack
+type: project
+version: 1.0.0
+status: DRAFT
+title: Technology Stack
+description: Programming languages, frameworks, databases, and infrastructure choices
+domain: architecture
+concerns:
+- technology-choices
+- dependencies
+content:
+  languages:
+    primary:
+    - name: '[Language name]'
+      version: '[Version]'
+      rationale: '[Why this language]'
+    secondary:
+    - name: '[Language name]'
+      version: '[Version]'
+      use_case: '[Specific use case]'
+  frameworks:
+    backend:
+    - name: '[Framework name]'
+      version: '[Version]'
+      rationale: '[Why this framework]'
+    frontend:
+    - name: '[Framework name]'
+      version: '[Version]'
+      rationale: '[Why this framework]'
+  databases:
+  - name: '[Database name]'
+    type: '[SQL|NoSQL|Graph|etc]'
+    version: '[Version]'
+    use_case: '[Primary use case]'
+    rationale: '[Why this database]'
+  infrastructure:
+    cloud_provider: '[AWS|Azure|GCP|None]'
+    container_runtime: '[Docker|Podman|None]'
+    orchestration: '[Kubernetes|ECS|None]'
+    rationale: '[Infrastructure choices rationale]'
+  third_party_services:
+  - name: '[Service name]'
+    purpose: '[What it''s used for]'
+    vendor: '[Vendor name]'
+    pricing_model: '[Free|Usage-based|Subscription]'
+  development_tools:
+    version_control: Git
+    ci_cd: '[GitHub Actions|GitLab CI|Jenkins|etc]'
+    monitoring: '[Tool name]'
+    logging: '[Tool name]'
+  _generation_note: This SCD was auto-generated from the architecture domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: david.kim@example.com
+  created_at: '2025-12-01T18:18:55.686435Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.686435Z'
+  rationale: Generated from architecture brief approved 2025-12-01
+  source_document: docs/architecture/*-brief.md

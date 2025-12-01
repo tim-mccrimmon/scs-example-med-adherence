@@ -1,0 +1,40 @@
+id: scd:project:business-objectives
+type: project
+version: 1.0.0
+status: DRAFT
+title: Business Objectives
+description: Strategic objectives, measurable outcomes, and guiding principles
+domain: business-context
+concerns:
+- strategic-alignment
+- success-metrics
+content:
+  vision: '[Overall vision for the product/system]
+
+    '
+  strategic_objectives:
+  - objective: '[Strategic objective]'
+    rationale: '[Why this objective matters]'
+    alignment: '[How this aligns with broader org goals]'
+  desired_outcomes:
+  - outcome: '[Desired business outcome]'
+    measurement: '[How this will be measured]'
+    target: '[Specific target or goal]'
+  guiding_principles:
+  - principle: '[Guiding principle]'
+    description: '[What this means in practice]'
+  key_performance_indicators:
+  - name: '[KPI name]'
+    metric: '[How it''s measured]'
+    target: '[Target value]'
+    rationale: '[Why this KPI matters]'
+  _generation_note: This SCD was auto-generated from the business-context domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: sarah.chen@example.com
+  created_at: '2025-12-01T18:18:55.674365Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.674365Z'
+  rationale: Generated from business-context brief approved 2025-12-01
+  source_document: docs/business-context/*-brief.md

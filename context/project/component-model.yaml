@@ -1,0 +1,49 @@
+id: scd:project:component-model
+type: project
+version: 1.0.0
+status: DRAFT
+title: Component Model
+description: Logical and physical components, responsibilities, and communication
+  patterns
+domain: architecture
+concerns:
+- component-structure
+- separation-of-concerns
+content:
+  logical_components:
+  - name: '[Component name]'
+    type: '[service|library|module|layer]'
+    responsibility: '[What this component is responsible for]'
+    dependencies:
+    - '[Other component it depends on]'
+    interfaces:
+    - '[Interface it exposes]'
+  physical_components:
+  - name: '[Deployment unit name]'
+    type: '[container|lambda|vm|etc]'
+    contains:
+    - '[Logical component 1]'
+    - '[Logical component 2]'
+    deployment_location: '[Where it runs]'
+    scaling_strategy: '[How it scales]'
+  communication_patterns:
+  - from: '[Component A]'
+    to: '[Component B]'
+    pattern: '[synchronous|asynchronous|event-driven|etc]'
+    protocol: '[HTTP|gRPC|Message Queue|etc]'
+    data_format: '[JSON|Protobuf|etc]'
+  boundaries:
+  - name: '[Boundary name]'
+    type: '[network|process|data|trust]'
+    description: '[What this boundary protects/separates]'
+    crossing_mechanism: '[How components cross this boundary]'
+  _generation_note: This SCD was auto-generated from the architecture domain brief.
+    In production, content would be extracted by AI transposer. For reference implementation,
+    this demonstrates the transposition workflow.
+provenance:
+  created_by: david.kim@example.com
+  created_at: '2025-12-01T18:18:55.688868Z'
+  last_updated_by: AI Transposer Script
+  last_updated_at: '2025-12-01T18:18:55.688868Z'
+  rationale: Generated from architecture brief approved 2025-12-01
+  source_document: docs/architecture/*-brief.md
