@@ -1,0 +1,45 @@
+version: 1.0.2
+release_date: '2025-12-02T14:48:08Z'
+status: validated
+project: med-adhere1
+bundle:
+  id: bundle:med-adhere1
+  type: project
+  file: project-bundle-v1.0.2.yaml
+  sha256: 8fe97bc08321ff84593587c9b1954c38758b0352926b68aec01b881c1fc4ba98
+  size_bytes: 1070
+components:
+  foundation_bundles:
+  - bundle:meta:1.0.0
+  - bundle:standards:1.0.0
+  domain_bundles:
+  - bundle:business-context:1.0.0
+  - bundle:architecture:1.0.0
+  - bundle:security:1.0.0
+  - bundle:performance-reliability:1.0.0
+  - bundle:usability-accessibility:1.0.0
+  - bundle:compliance-governance:1.0.0
+  - bundle:data-provenance:1.0.0
+  - bundle:testing-validation:1.0.0
+  - bundle:deployment-operations:1.0.0
+  - bundle:safety-risk:1.0.0
+  - bundle:ethics-ai-accountability:1.0.0
+  total_scds: 39
+approval:
+  approved_by: timmccrimmon@example.com
+  approved_at: '2025-12-02T14:48:08Z'
+  approval_notes: CLI-generated version - functionally equivalent to v1.0.0 manual
+    release. This demonstrates the automated versioning workflow.
+phases:
+  phase_1_intent: completed
+  phase_2_validate: completed
+  phase_3_version: completed
+  phase_4_build: pending
+release_notes: CLI-generated version - functionally equivalent to v1.0.0 manual release.
+  This demonstrates the automated versioning workflow.
+distribution:
+  repository: med-adhere1
+  branch: main
+  tag: v1.0.2
+  immutable: true
+  authoritative: true
