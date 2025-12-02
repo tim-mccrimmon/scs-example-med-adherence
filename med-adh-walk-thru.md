@@ -216,12 +216,25 @@ Each person's AI assistant builds SCDs from this content using templates in /you
 
 #### Notes from Implementation
 
-[Document your experience here as you work through Intent Phase]
+**Completed:** December 1, 2025
 
-- What worked well?
-- What was confusing?
-- What took longer than expected?
-- What would you change?
+**What Worked Well:**
+- Project scaffolding with `scs new project` created proper structure
+- Healthcare-specific templates included HIPAA, CHAI, TEFCA compliance SCDs
+- Domain briefs (11 documents) provided clear structure for requirements capture
+- AI-assisted content generation (transpose_briefs_to_scds.py) successfully created 39 SCDs from briefs
+
+**Key Decisions:**
+- Used 11 prescribed domains (all required for healthcare projects)
+- Assigned domain owners for accountability
+- Populated all SCDs with realistic medication adherence content
+- Used provenance metadata to track who created what
+
+**What We Learned:**
+- Intent phase is more about organization and planning than code
+- Having templates/briefs before starting is crucial
+- AI can accelerate SCD creation but human review is essential
+- Proper domain ownership prevents gaps in coverage
 
 ---
 
@@ -264,7 +277,55 @@ scs validate --bundle bundles/project-bundle.yaml --output json
 
 #### Notes from Implementation
 
-[Document your experience here]
+**Completed:** December 2, 2025
+
+**What Worked Well:**
+- Validator successfully identified structural issues
+- Multi-level validation (syntax, schema, semantic, bundle, completeness) caught real problems
+- Clear error messages helped debug issues quickly
+
+**Challenges Encountered:**
+
+1. **Validator Incomplete** - Bundle validation couldn't load SCDs from domain bundles
+   - **Issue:** Validator had stub code that didn't resolve SCD references
+   - **Fix:** Implemented SCD loading logic in validate.py (lines 275-362)
+   - **Impact:** Now properly loads and validates all 39 SCDs from 11 domain bundles
+
+2. **Domain Grouping Bug** - SCDs not grouped correctly by domain
+   - **Issue:** Validator parsed domain from SCD ID instead of using `domain` field
+   - **Fix:** Updated completeness_validator.py to use `scd.get("domain")`
+   - **Impact:** Resolved "Domain has 0 SCD(s)" errors
+
+3. **Bundle Type Counting** - Incorrect counting of domain bundles
+   - **Issue:** Validator counted bundle names instead of bundle types
+   - **Fix:** Updated to distinguish meta/standards from domain bundles
+   - **Impact:** Fixed "must have exactly 11 domain bundles" error
+
+**Final Result:**
+- ✓ Status: VALID
+- ✓ 0 errors
+- ⚠ 9 warnings (optional recommendations for additional SCDs)
+- ✓ All 39 SCDs loaded and validated
+- ✓ All 11 prescribed domains present
+
+**Tools Used:**
+```bash
+scs validate --bundle bundles/project-bundle.yaml --schema-dir ../scs-spec/schema
+```
+
+**Time Investment:**
+- Initial validation attempt: ~5 minutes
+- Debugging and fixing validator: ~2 hours
+- Final validation: ~5 seconds
+
+**Key Learnings:**
+- Validator tooling needed development to be production-ready
+- Validation should happen continuously during Intent phase, not just at the end
+- Having good error messages is crucial for debugging
+- 0 errors is achievable; warnings are acceptable for v1.0
+
+**Documentation Created:**
+- None (validation is built into CLI)
 
 ---
 
@@ -298,7 +359,81 @@ Once SCDs pass validation:
 
 #### Notes from Implementation
 
-[Document your experience here]
+**Completed:** December 2, 2025
+
+**Approach:** We implemented BOTH manual and automated versioning to understand the process and build tooling.
+
+#### Manual Versioning (v1.0.0)
+
+**Process:**
+1. Created versioned snapshot: `project-bundle-v1.0.0.yaml`
+2. Added approval metadata to provenance section
+3. Generated SHA-256 checksum: `283b5f13b49057386fc61caf16e0f8ba6df44daafe0b8bd4fde25e2f7ba67f1a`
+4. Created version manifest: `VERSION-1.0.0-MANIFEST.yaml`
+5. Git commit and annotated tag: `v1.0.0`
+
+**Time Required:** ~15 minutes
+
+**Documentation Created:** `manual-version-process.md` (516 lines, 13KB)
+
+#### Automated Versioning (v1.0.2)
+
+**Built CLI Command:**
+```bash
+scs bundle version --version 1.0.2 \
+  --approved-by "timmccrimmon@example.com" \
+  --notes "CLI-generated version"
+```
+
+**Time Required:** ~2 seconds
+
+**What the Command Does:**
+1. Validates bundle (unless --no-validate)
+2. Creates versioned bundle with approval metadata
+3. Generates SHA-256 checksum
+4. Creates version manifest
+5. Creates git commit and tag (unless --no-git)
+
+**Documentation Created:** `automated-version-process.md` (954 lines, 21KB)
+
+**Comparison:**
+
+| Aspect | Manual | Automated |
+|--------|--------|-----------|
+| Time | ~15 minutes | ~2 seconds |
+| Consistency | Prone to errors | Always consistent |
+| Scriptable | No | Yes (CI/CD ready) |
+| Error Handling | Manual checks | Built-in validation |
+
+**What Worked Well:**
+- Manual process helped us understand requirements deeply
+- Building CLI command ensured repeatability
+- Both approaches produce valid, immutable versioned bundles
+- Git integration makes distribution easy
+
+**Challenges:**
+- Manual process is error-prone (typos, formatting, checksums)
+- CLI command needed careful design for all edge cases
+- Validation integration required finding schema directory dynamically
+
+**Key Learnings:**
+- Automation should come AFTER understanding manual process
+- Immutability is enforced by convention (versioned files + git tags)
+- Checksums are essential for verifying integrity
+- Version manifests provide complete audit trail
+- Both manual and automated documentation valuable for different audiences
+
+**Files Created:**
+- `bundles/project-bundle-v1.0.0.yaml` (manual)
+- `bundles/VERSION-1.0.0-MANIFEST.yaml` (manual)
+- `bundles/project-bundle-v1.0.2.yaml` (automated)
+- `bundles/VERSION-1.0.2-MANIFEST.yaml` (automated)
+
+**Git Tags:**
+- `v1.0.0` (manual process)
+- `v1.0.2` (automated process)
+
+**Recommendation:** Use automated CLI command for all future versions. Keep manual documentation for training and understanding.
 
 ---
 
@@ -420,5 +555,66 @@ After completing this walkthrough:
 
 ---
 
-*Last Updated: [Date]*
-*Status: Intent Phase in progress*
+## Progress Summary
+
+| Phase | Status | Completed | Key Deliverables |
+|-------|--------|-----------|------------------|
+| Phase 1: Intent | ✅ Complete | Dec 1, 2025 | 39 SCDs, 11 domain bundles, project structure |
+| Phase 2: Validate | ✅ Complete | Dec 2, 2025 | Fixed validator, 0 errors, validated bundle |
+| Phase 3: Version | ✅ Complete | Dec 2, 2025 | v1.0.0 (manual), v1.0.2 (CLI), tooling built |
+| Phase 4: Build | ⏸️ Pending | - | Configure dev environments, AI-assisted development |
+
+## Lessons Learned
+
+### What Worked Well
+
+1. **Structured Approach** - The 4-phase process provided clear milestones
+2. **AI Assistance** - Used AI throughout for content generation and debugging
+3. **Validation-First** - Catching errors early prevented downstream issues
+4. **Both Manual & Automated** - Understanding manual process informed automation
+5. **Documentation** - Creating docs alongside work captured knowledge while fresh
+
+### What Didn't Work / Challenges
+
+1. **Validator Immaturity** - Significant development needed to make validator functional
+2. **Schema Path Issues** - Finding schema directory dynamically was tricky
+3. **Time Estimation** - Phase 2 took longer than expected due to validator fixes
+4. **Validation During Intent** - Should have validated SCDs continuously, not at end
+
+### What We Would Change
+
+1. **Validate Continuously** - Run validation on SCDs as they're created in Phase 1
+2. **Test Tooling First** - Verify validator works before generating all content
+3. **Automated Tests** - Add tests for validator to prevent regressions
+4. **Better Templates** - Some SCD templates could be more specific
+5. **Early Git Tags** - Consider tagging after each phase completion
+
+### Unexpected Insights
+
+1. **Validator is Critical** - Without working validation, the whole process stalls
+2. **Immutability is Convention** - Git tags + versioned filenames enforce immutability
+3. **Checksums are Essential** - SHA-256 provides confidence in integrity
+4. **Manual First, Then Automate** - Understanding manual process crucial for good automation
+5. **Documentation is a Deliverable** - Process docs as important as versioned bundles
+
+### Technical Debt Created
+
+1. **Validator Schema Path** - Hardcoded search paths, should be configurable
+2. **Validation Integration** - CLI validation could be smarter about finding schemas
+3. **Error Messages** - Some validator errors could be more actionable
+4. **Test Coverage** - No automated tests for validator or CLI commands
+5. **Bundle Command Registration** - Some bundle subcommands may not be fully registered
+
+### Recommendations for Next Project
+
+1. **Start with Validation** - Ensure all tooling works before Phase 1
+2. **Continuous Validation** - Validate SCDs incrementally during Intent phase
+3. **Automated Testing** - Add tests before building on tooling
+4. **CI/CD from Start** - Set up automated validation in CI from day 1
+5. **Version Early** - Consider versioning after each major milestone
+
+---
+
+*Last Updated: December 2, 2025*
+*Status: Phases 1-3 Complete, Phase 4 Pending*
+*Next Milestone: Configure development environment with versioned bundle (Phase 4)*
