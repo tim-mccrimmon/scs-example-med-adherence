@@ -481,7 +481,194 @@ If the Build phase reveals that:
 
 #### Notes from Implementation
 
-[Document your experience here - this is the most important phase to document thoroughly]
+**Status:** In Progress
+
+This section documents how to configure Claude Code (or other AI tools) to use the versioned SCD bundle.
+
+##### Step 1: Create .claude Directory
+
+Claude Code looks for instructions in a `.claude/CLAUDE.md` file in your project root. Create this directory:
+
+```bash
+mkdir -p .claude
+```
+
+##### Step 2: Create CLAUDE.md Instructions File
+
+Create `.claude/CLAUDE.md` with the following content. This file tells Claude Code:
+- What version of the bundle to use
+- How to answer questions (three-tier strategy)
+- Which SCDs to read for different development roles
+- Critical rules about when to use tools vs loaded context
+
+**Template:** See `.claude/CLAUDE.md` template in this repository, or create using this structure:
+
+```markdown
+# [Project Name] - Structured Context
+
+## Project Overview
+This project uses Structured Context Specification (SCS) to ensure all code aligns with architecture, security, and compliance requirements.
+
+## Versioned SCD Bundle
+**Current Version:** v1.0.2
+**Location:** `bundles/project-bundle-v1.0.2.yaml`
+**Manifest:** `bundles/VERSION-1.0.2-MANIFEST.yaml`
+
+---
+
+## HOW TO USE THIS CONTEXT - READ THIS FIRST
+
+### Three-Tier Answer Strategy
+
+**TIER 1: Answer from THIS loaded context (NO TOOLS NEEDED)**
+Answer these questions instantly without reading any files:
+- "What version is the current bundle?" → v1.0.2 (stated above)
+- "Which SCDs should I reference for backend work?" → Listed in Role-Specific Guidance below
+- "Where are the SCDs located?" → context/project/*.yaml
+
+**TIER 2: Read specific SCDs (USE Read tool strategically)**
+When asked about specific requirements, architecture, or constraints:
+- Read the relevant SCD(s) from the list below
+- Examples:
+  - "What are the HIPAA requirements?" → Read `context/project/hipaa-compliance.yaml`
+  - "How should authentication work?" → Read `context/project/authn-authz.yaml`
+
+**TIER 3: Explore codebase (USE Grep/Glob/Read on source files)**
+Only AFTER reading relevant SCDs:
+- Explore code to understand current implementation
+- Identify gaps between SCDs and actual code
+- Plan specific code changes
+
+### Critical Rules - Follow These Always
+
+1. **NEVER use tools to answer these questions** (answers are in THIS file):
+   ✗ "What version is the bundle?"
+   ✗ "Which SCDs exist?"
+   ✗ "Where are SCDs located?"
+
+2. **ALWAYS read relevant SCDs BEFORE writing any code**
+   - Don't make assumptions
+   - Don't guess based on code exploration
+   - Verify requirements in the actual SCD files
+
+3. **When writing code, follow this workflow:**
+   ```
+   Step 1: Identify which SCDs apply (use Role-Specific Guidance below)
+   Step 2: Read those SCDs to understand requirements
+   Step 3: Explore existing code if needed
+   Step 4: Write code that satisfies SCD requirements
+   Step 5: Verify compliance with SCDs
+   ```
+
+## Important SCDs to Reference
+
+[List all your SCDs by domain - Architecture, Security, Compliance, etc.]
+
+## Role-Specific Guidance
+
+### For Backend Development
+**Primary SCDs to read FIRST:**
+- system-context, tech-stack, component-model
+- authn-authz, data-protection, data-handling
+- hipaa-compliance, data-model
+- test-coverage
+
+### For Frontend Development
+[Similar guidance]
+
+### For DevOps/Infrastructure
+[Similar guidance]
+
+[Continue with other roles...]
+
+## Quick Self-Check Before Taking Action
+
+**Before using ANY tools, ask yourself:**
+1. "Can I answer this from loaded context?" → Answer immediately
+2. "Do I need specific SCD content?" → Read the SCD
+3. "Do I need to explore code?" → Only AFTER reading SCDs
+```
+
+**Full template available:** Copy from `CLAUDE.md` in this project root.
+
+##### Step 3: Start Claude Code
+
+Start Claude Code in your project directory:
+
+```bash
+cd med-adhere
+claude
+```
+
+Claude Code will automatically load `.claude/CLAUDE.md` at startup.
+
+##### Step 4: Test the Configuration
+
+Ask Claude Code these test questions to verify proper behavior:
+
+**Test 1: Should answer instantly (no tools)**
+```
+Q: What version is the current bundle?
+Expected: Instant answer "v1.0.2" without using Read/Grep tools
+```
+
+**Test 2: Should read SCDs**
+```
+Q: What are the HIPAA requirements for PHI handling?
+Expected: Reads context/project/hipaa-compliance.yaml first, then answers
+```
+
+**Test 3: Should follow workflow**
+```
+Q: Add a new API endpoint for user registration
+Expected:
+1. Reads authn-authz.yaml, data-model.yaml, hipaa-compliance.yaml
+2. Then explores existing code
+3. Then implements according to SCD requirements
+```
+
+##### Results from Testing
+
+**Test 1 - Bundle Version Query:**
+- ❌ **FAILED initially:** Claude used Read tool to check manifest file (took 15 seconds)
+- ✅ **FIXED:** Added explicit "Three-Tier Strategy" and "Critical Rules" sections to CLAUDE.md
+- ✅ **PASSED after fix:** Claude now answers instantly without tools
+
+**Key Learning:** The CLAUDE.md file needs VERY explicit instructions about when NOT to use tools. Without this, Claude defaults to verifying information by reading files, even when the answer is already in loaded context.
+
+**Test 2 - SCD Content Query:**
+- ✅ **PASSED:** Claude correctly reads the specified SCD files
+- Reads multiple related SCDs when appropriate (e.g., security + compliance together)
+
+**Test 3 - Code Generation Workflow:**
+- ⚠️ **PARTIAL:** Claude understands to read SCDs, but needs prompting to follow full workflow
+- Improvement: Added workflow examples to CLAUDE.md showing good vs bad interactions
+
+##### Developer Experience Observations
+
+**What Works Well:**
+- Claude can answer basic project questions instantly once CLAUDE.md is properly configured
+- Role-specific guidance helps developers know which SCDs to reference
+- Three-tier strategy provides clear decision framework
+
+**What Needs Improvement:**
+- Initial CLAUDE.md had insufficient guidance, leading to slow/inefficient tool use
+- Developers may need to explicitly reference instructions: "According to your loaded instructions..."
+- Need to balance between letting Claude explore vs forcing strict adherence to loaded context
+
+**Recommendations:**
+1. **Template is critical:** Provide strong CLAUDE.md template with SCS CLI
+2. **Test before using:** Always test with basic questions to verify proper behavior
+3. **Iterate on instructions:** Refine CLAUDE.md based on actual usage patterns
+4. **Document tool behavior:** Different AI tools will behave differently with context files
+
+##### Phase 4 Success Criteria
+
+- [ ] .claude/CLAUDE.md file created with proper version reference
+- [ ] Claude Code loads and understands the instructions
+- [ ] Test queries demonstrate proper three-tier behavior
+- [ ] Developers can work with SCDs through Claude Code effectively
+- [ ] Code generated aligns with SCD requirements
 
 ---
 
